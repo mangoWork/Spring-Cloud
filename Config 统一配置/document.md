@@ -47,6 +47,15 @@ Config Client是Config Server的客户端（微服务架构系统中的每个微
     </dependencies>
 </dependencyManagement>
 
+ <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
 ```
 
 - 3 . 在项目启动类中添加@EnableConfigServer注解，开启Spring Cloud Config的服务端功能
@@ -125,8 +134,16 @@ from=git-dev-1.5
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-config</artifactId>
     </dependency>
-
   </dependencies>
+  
+   <build>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+      </plugins>
+    </build>
 ```
 
 - 3 . 配置bootstrap.properties，注意是bootstrap.properties

@@ -57,6 +57,16 @@ Eureka是Netflix开源的服务发现组件，本身是一个基于REST的服务
         </dependency>
     </dependencies>
 </dependencyManagement>
+
+ <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+  
 ```
 
 - 3 . 在项目启动类中添加@EnableEurekaServer注解
@@ -82,6 +92,25 @@ server.port=8080
 eureka.instance.hostname=localhost 
 eureka.client.register-with-eureka=false //禁用客户端注册行为
 eureka.client.fetch-registry=false
+```
+
+或者application.yml文件中添加如下信息
+
+```
+server:
+  port: 1001
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+  instance:
+    hostname: localhost
+  server:
+    evictionIntervalTimerInMs: 1000 #检查失效服务的间隔时间
 ```
 
 - 5 . 启动项目，在浏览器中打开localhost:8080可见Eureka Server的管理页面
@@ -124,6 +153,15 @@ Eureka Client作为服务提供者，向服务注册中心Eureka Server注册自
         </dependency>
     </dependencies>
 </dependencyManagement>
+
+ <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 ```
 
 - 3 . 实现/dc请求处理接口
